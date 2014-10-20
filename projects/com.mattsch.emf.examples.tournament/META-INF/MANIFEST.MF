@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tournament
+Bundle-SymbolicName: com.mattsch.emf.examples.tournament;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: org.eclipse.emf.ecore
+Bundle-Vendor: Matthias Schoettle

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/com.mattsch.emf.examples.tournament/src" modelPluginID="com.mattsch.emf.examples.tournament"
+    modelName="Tournament" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>Tournament.ecore</foreignModel>
+  <genPackages prefix="Tournament" basePackage="com.mattsch.emf.examples" disposableProviderFactory="true"
+      ecorePackage="Tournament.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Tournament.ecore#//MatchKind">
+      <genEnumLiterals ecoreEnumLiteral="Tournament.ecore#//MatchKind/Group"/>
+      <genEnumLiterals ecoreEnumLiteral="Tournament.ecore#//MatchKind/QuarterFinal"/>
+      <genEnumLiterals ecoreEnumLiteral="Tournament.ecore#//MatchKind/SemiFinal"/>
+      <genEnumLiterals ecoreEnumLiteral="Tournament.ecore#//MatchKind/Final"/>
+    </genEnums>
+    <genClasses ecoreClass="Tournament.ecore#//Tournament">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Tournament.ecore#//Tournament/groups"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Tournament.ecore#//Tournament/teams"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Tournament.ecore#//Tournament/newEReference"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Tournament.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Tournament.ecore#//NamedElement/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Tournament.ecore#//Group">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Tournament.ecore#//Group/teams"/>
+    </genClasses>
+    <genClasses ecoreClass="Tournament.ecore#//Team">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Tournament.ecore#//Team/group"/>
+    </genClasses>
+    <genClasses ecoreClass="Tournament.ecore#//Match">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Tournament.ecore#//Match/group"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Tournament.ecore#//Match/homeTeam"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Tournament.ecore#//Match/guestTeam"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Tournament.ecore#//Match/date"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Tournament.ecore#//Match/location"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Tournament.ecore#//Match/kind"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
