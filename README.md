@@ -27,6 +27,8 @@ The **projects** provide the final result, which includes the tournament model, 
 - Change the textual representation of a model element in the editor and
 - Change the choice of values provided for a property in the editor
 
+To see the evolution of the model and custom modifications, check the commit history.
+
 ## Requirements
 
 Use the [Eclipse Modeling Tools](https://www.eclipse.org/downloads/) package.
@@ -40,8 +42,8 @@ Simply run `com.mattsch.emf.examples.test.TournamentExample` and the example mod
 - Right-Click on the `.editor` project
 - Select `Run As > Eclipse Application`
 - In the second Eclipse instance, either
-  1. Drag in the example model into the editor area or
+  1. Drag the example model into the editor area or
   2. Create a new model in a project by going to  and selecting `.
     - Go to `File > New > Other...`
-    - Select Tournament Model` from the `Example EMF Model Creation Wizards` category
+    - Select `Tournament Model` from the `Example EMF Model Creation Wizards` category
     - Choose `Tournament` as the model object
