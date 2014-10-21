@@ -9,6 +9,7 @@
       ecorePackage="Tournament.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Tournament.ecore#//MatchKind">
       <genEnumLiterals ecoreEnumLiteral="Tournament.ecore#//MatchKind/Group"/>
+      <genEnumLiterals ecoreEnumLiteral="Tournament.ecore#//MatchKind/RoundOf16"/>
       <genEnumLiterals ecoreEnumLiteral="Tournament.ecore#//MatchKind/QuarterFinal"/>
       <genEnumLiterals ecoreEnumLiteral="Tournament.ecore#//MatchKind/SemiFinal"/>
       <genEnumLiterals ecoreEnumLiteral="Tournament.ecore#//MatchKind/Final"/>
@@ -16,7 +17,7 @@
     <genClasses ecoreClass="Tournament.ecore#//Tournament">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Tournament.ecore#//Tournament/groups"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Tournament.ecore#//Tournament/teams"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Tournament.ecore#//Tournament/newEReference"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Tournament.ecore#//Tournament/matches"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Tournament.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Tournament.ecore#//NamedElement/name"/>
@@ -34,6 +35,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Tournament.ecore#//Match/date"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Tournament.ecore#//Match/location"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Tournament.ecore#//Match/kind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Tournament.ecore#//Match/result"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
