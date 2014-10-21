@@ -65,10 +65,13 @@ public class TournamentExample {
         });
         
         /**
-         * Create an example group.
+         * Create an example groups.
          */
         Group groupG = TournamentFactory.eINSTANCE.createGroup();
         groupG.setName("Group G");
+        
+        Group groupA = TournamentFactory.eINSTANCE.createGroup();
+        groupA.setName("Group A");
         
         /**
          * Create some teams.
@@ -81,12 +84,22 @@ public class TournamentExample {
         portugal.setName("Portugal");
         portugal.setGroup(groupG);
         
+        Team ghana = TournamentFactory.eINSTANCE.createTeam();
+        ghana.setName("Ghana");
+        ghana.setGroup(groupG);
+        
+        Team brazil = TournamentFactory.eINSTANCE.createTeam();
+        brazil.setName("Brazil");
+        brazil.setGroup(groupA);
+        
         /**
          * Create an example match.        
          */
         Match match = TournamentFactory.eINSTANCE.createMatch();
         // Not necessary, because it is the default.
         match.setKind(MatchKind.GROUP);
+        
+        match.setGroup(groupG);
         match.setLocation("Salvador");
         match.setDate((Date) EcoreFactory.eINSTANCE.createFromString(EcorePackage.Literals.EDATE, "2014-06-16"));
         
@@ -94,7 +107,7 @@ public class TournamentExample {
         match.setGuestTeam(portugal);
         
         /**
-         * :-)
+         * Yay! :-)
          */
         match.setResult("4:0");
         
@@ -102,8 +115,11 @@ public class TournamentExample {
          * Add everything to the tournament.
          */
         tournament.getGroups().add(groupG);
+        tournament.getGroups().add(groupA);
         tournament.getTeams().add(germany);
         tournament.getTeams().add(portugal);
+        tournament.getTeams().add(ghana);
+        tournament.getTeams().add(brazil);
         tournament.getMatches().add(match);
         
         /**

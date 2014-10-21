@@ -3,18 +3,20 @@
 package com.mattsch.emf.examples.tournament.provider;
 
 
+import com.mattsch.emf.examples.tournament.Group;
 import com.mattsch.emf.examples.tournament.Match;
+import com.mattsch.emf.examples.tournament.Team;
 import com.mattsch.emf.examples.tournament.TournamentPackage;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -98,11 +100,11 @@ public class MatchItemProvider
      * This adds a property descriptor for the Home Team feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     protected void addHomeTeamPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
+            (new ItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_Match_homeTeam_feature"),
@@ -113,18 +115,31 @@ public class MatchItemProvider
                  true,
                  null,
                  null,
-                 null));
+                 null) {
+                
+                @Override
+                public Collection<?> getChoiceOfValues(Object object) {
+                    Match match = (Match) object;
+                    
+                    if (match.getGroup() != null) {
+                        return getGroupTeams(match.getGroup(), match.getGuestTeam());
+                    }
+                    
+                    return super.getChoiceOfValues(object);
+                }
+                
+            });
     }
 
     /**
      * This adds a property descriptor for the Guest Team feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     protected void addGuestTeamPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
+            (new ItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_Match_guestTeam_feature"),
@@ -135,7 +150,40 @@ public class MatchItemProvider
                  true,
                  null,
                  null,
-                 null));
+                 null) {
+                
+                @Override
+                public Collection<?> getChoiceOfValues(Object object) {
+                    Match match = (Match) object;
+                    
+                    if (match.getGroup() != null) {
+                        return getGroupTeams(match.getGroup(), match.getHomeTeam());
+                    }
+                    
+                    return super.getChoiceOfValues(object);
+                }
+                
+            });
+    }
+    
+    /**
+     * Returns a list of teams belonging to a group, but without the opposite team, if it exists.
+     * The list also contains null.
+     * 
+     * @param group the group
+     * @param oppositeTeam the opposite team, null if not set
+     * @return a list of teams
+     */
+    private List<Team> getGroupTeams(Group group, Team oppositeTeam) {
+        List<Team> result = new ArrayList<Team>();
+        
+        // Add all teams of the group, but remove the opposite team (if set).
+        result.addAll(group.getTeams());
+        result.remove(oppositeTeam);
+        // The editor also provides a null value to unset the property.
+        result.add(null);
+        
+        return result;
     }
 
     /**
@@ -241,12 +289,12 @@ public class MatchItemProvider
      * This returns the label text for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public String getText(Object object) {
         Date labelValue = ((Match)object).getDate();
-        String label = labelValue == null ? null : labelValue.toString();
+        String label = labelValue == null ? null : new SimpleDateFormat("dd.MM.yyyy").format(labelValue);
         return label == null || label.length() == 0 ?
             getString("_UI_Match_type") :
             getString("_UI_Match_type") + " " + label;
