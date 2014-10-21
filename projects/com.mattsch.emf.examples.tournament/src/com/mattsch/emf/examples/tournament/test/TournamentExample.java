@@ -18,12 +18,14 @@ import com.mattsch.emf.examples.tournament.Tournament;
 import com.mattsch.emf.examples.tournament.TournamentFactory;
 import com.mattsch.emf.examples.tournament.TournamentPackage;
 import com.mattsch.emf.examples.tournament.util.ResourceHelper;
+import com.mattsch.emf.examples.tournament.util.TournamentResourceFactoryImpl;
 
 /**
  * Provides an example of how to create a model instance programmatically using the generated model code.
  * A subset of a tournament is created.
  * Also shows a small example of how to listen for notifications on the model, 
  * how to serialize/deserialize the model and how to access properties in a reflective way.
+ * This example will serialize the example model to examples/WorldCup2014.tournament in the project folder.
  * 
  * @author Matthias Schoettle <mschoettle (at) cs.mcgill.ca>
  */
@@ -103,6 +105,13 @@ public class TournamentExample {
         tournament.getTeams().add(germany);
         tournament.getTeams().add(portugal);
         tournament.getMatches().add(match);
+        
+        /**
+         * For tournament models the specific resource factory should be used instead, 
+         * which will use the TournamentResourceImpl class for resources.
+         * This resource uses UUIDs.
+         */
+        ResourceHelper.INSTANCE.addResourceFactory("tournament", new TournamentResourceFactoryImpl());
         
         /**
          * Save the model.

@@ -5,8 +5,8 @@
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
     operationReflection="true" importOrganizing="true">
   <foreignModel>Tournament.ecore</foreignModel>
-  <genPackages prefix="Tournament" basePackage="com.mattsch.emf.examples" disposableProviderFactory="true"
-      ecorePackage="Tournament.ecore#/">
+  <genPackages prefix="Tournament" basePackage="com.mattsch.emf.examples" resource="XMI"
+      disposableProviderFactory="true" ecorePackage="Tournament.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Tournament.ecore#//MatchKind">
       <genEnumLiterals ecoreEnumLiteral="Tournament.ecore#//MatchKind/Group"/>
       <genEnumLiterals ecoreEnumLiteral="Tournament.ecore#//MatchKind/RoundOf16"/>
