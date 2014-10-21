@@ -3,6 +3,8 @@ package com.mattsch.emf.examples.tournament.test;
 import java.util.Date;
 import java.util.List;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -17,6 +19,14 @@ import com.mattsch.emf.examples.tournament.TournamentFactory;
 import com.mattsch.emf.examples.tournament.TournamentPackage;
 import com.mattsch.emf.examples.tournament.util.ResourceHelper;
 
+/**
+ * Provides an example of how to create a model instance programmatically using the generated model code.
+ * A subset of a tournament is created.
+ * Also shows a small example of how to listen for notifications on the model, 
+ * how to serialize/deserialize the model and how to access properties in a reflective way.
+ * 
+ * @author Matthias Schoettle <mschoettle (at) cs.mcgill.ca>
+ */
 public class TournamentExample {
 
     public static void main(String[] args) {
@@ -30,6 +40,27 @@ public class TournamentExample {
          */
         Tournament tournament = TournamentFactory.eINSTANCE.createTournament();
         tournament.setName("FIFA World Cup 2014");
+        
+        /**
+         * Get notified when the tournament is changed.
+         * This would be in your UI or so.
+         * Alternatively, the interface org.eclipse.emf.common.notify.Adapter can be used.
+         */
+        tournament.eAdapters().add(new AdapterImpl() {
+            @Override
+            public void notifyChanged(Notification notification) {
+                if (notification.getFeature() == TournamentPackage.Literals.TOURNAMENT__MATCHES) {
+                    switch (notification.getEventType()) {
+                        case Notification.ADD:
+                            System.out.println("Match added: " + notification.getNewValue());
+                            break;
+                        case Notification.REMOVE:
+                            System.out.println("Match removed: " + notification.getOldValue());
+                            break;
+                    }
+                }
+            }
+        });
         
         /**
          * Create an example group.
