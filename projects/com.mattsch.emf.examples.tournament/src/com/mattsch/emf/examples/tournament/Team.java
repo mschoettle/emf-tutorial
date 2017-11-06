@@ -10,10 +10,10 @@ package com.mattsch.emf.examples.tournament;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link com.mattsch.emf.examples.tournament.Team#getGroup <em>Group</em>}</li>
  * </ul>
- * </p>
  *
  * @see com.mattsch.emf.examples.tournament.TournamentPackage#getTeam()
  * @model

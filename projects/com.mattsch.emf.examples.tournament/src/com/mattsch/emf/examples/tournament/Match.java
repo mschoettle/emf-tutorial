@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link com.mattsch.emf.examples.tournament.Match#getGroup <em>Group</em>}</li>
  *   <li>{@link com.mattsch.emf.examples.tournament.Match#getHomeTeam <em>Home Team</em>}</li>
@@ -22,7 +23,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.mattsch.emf.examples.tournament.Match#getKind <em>Kind</em>}</li>
  *   <li>{@link com.mattsch.emf.examples.tournament.Match#getResult <em>Result</em>}</li>
  * </ul>
- * </p>
  *
  * @see com.mattsch.emf.examples.tournament.TournamentPackage#getMatch()
  * @model

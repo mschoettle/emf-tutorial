@@ -11,10 +11,10 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link com.mattsch.emf.examples.tournament.Group#getTeams <em>Teams</em>}</li>
  * </ul>
- * </p>
  *
  * @see com.mattsch.emf.examples.tournament.TournamentPackage#getGroup()
  * @model

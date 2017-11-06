@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link com.mattsch.emf.examples.tournament.impl.MatchImpl#getGroup <em>Group</em>}</li>
  *   <li>{@link com.mattsch.emf.examples.tournament.impl.MatchImpl#getHomeTeam <em>Home Team</em>}</li>
@@ -33,7 +34,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link com.mattsch.emf.examples.tournament.impl.MatchImpl#getKind <em>Kind</em>}</li>
  *   <li>{@link com.mattsch.emf.examples.tournament.impl.MatchImpl#getResult <em>Result</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

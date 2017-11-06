@@ -26,12 +26,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link com.mattsch.emf.examples.tournament.impl.TournamentImpl#getGroups <em>Groups</em>}</li>
  *   <li>{@link com.mattsch.emf.examples.tournament.impl.TournamentImpl#getTeams <em>Teams</em>}</li>
  *   <li>{@link com.mattsch.emf.examples.tournament.impl.TournamentImpl#getMatches <em>Matches</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
