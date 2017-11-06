@@ -64,6 +64,15 @@ public class TournamentExample {
                             System.out.println("Match removed: " + notification.getOldValue());
                             break;
                     }
+                } else if (notification.getFeature() == TournamentPackage.Literals.TOURNAMENT__GROUPS) {
+                    switch (notification.getEventType()) {
+                        case Notification.ADD:
+                            System.out.println("Group added: " + notification.getNewValue());
+                            break;
+                        case Notification.REMOVE:
+                            System.out.println("Group removed: " + notification.getOldValue());
+                            break;
+                    }
                 }
             }
         });
