@@ -24,18 +24,26 @@ The **projects** provide the final result, which includes the tournament model, 
 - Get notified when the model changes,
 - Use a customized resource factory,
 - Access properties of the model in a reflective way,
-- Change the textual representation of a model element in the editor and
-- Change the choice of values provided for a property in the editor
+- Change the textual representation of a model element in the editor,
+- Change the choice of values provided for a property in the editor, and
+- Add an OCL constraint to the metamodel
 
 To see the evolution of the model and custom modifications, check the commit history.
 
 ## Requirements
 
-Use the [Eclipse Modeling Tools](https://www.eclipse.org/downloads/) package.
+Use the latest [Eclipse Modeling Tools](https://www.eclipse.org/downloads/) package.
 
 ## Get the example model
 
 Simply run `com.mattsch.emf.examples.test.TournamentExample` and the example model will be saved to `examples/FIFAWorldCup2014.tournament` in the same project.
+
+## Tasks a participant can do
+
+Besides creating the model from scratch, creating the genmodel, then generating code and creating models, the projects in this repository allow the following small tasks to practice:
+
+- When creating a non-group match and performing validation a problem becomes evident. Address it such that it is possible to create valid models for all kinds of matches.
+- With the above problem being addressed, the existing constraint (*groupMatchRequiresGroupKind*) is not sufficient. It is still possible to have no group set, but the match kind is *Group*. Modify the existing one or add an additional constraint to address this.
 
 ## How to use the generated editor
 
@@ -47,3 +55,10 @@ Simply run `com.mattsch.emf.examples.test.TournamentExample` and the example mod
     - Go to `File > New > Other...`
     - Select `Tournament Model` from the `Example EMF Model Creation Wizards` category
     - Choose `Tournament` as the model object
+    
+## How to add and modify constraints
+
+- Right-Click on `Tournament.ecore` in the model project
+- Select *Open With* > *OCLinEcore Editor*
+- Find the existing invariant (constraint) for an example
+- **Important:** After modifying or adding constraints, the model code needs to be re-generated
