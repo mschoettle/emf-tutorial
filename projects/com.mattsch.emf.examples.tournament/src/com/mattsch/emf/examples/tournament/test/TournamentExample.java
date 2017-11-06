@@ -5,10 +5,14 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.Diagnostician;
+import org.eclipse.ocl.pivot.utilities.PivotStandaloneSetup;
+import org.eclipse.ocl.xtext.essentialocl.EssentialOCLStandaloneSetup;
 
 import com.mattsch.emf.examples.tournament.Group;
 import com.mattsch.emf.examples.tournament.Match;
@@ -149,9 +153,43 @@ public class TournamentExample {
         List<Group> groups = (List<Group>) savedTournament.eGet(TournamentPackage.Literals.TOURNAMENT__GROUPS);
         
         EObject newGroup = TournamentFactory.eINSTANCE.create(TournamentPackage.Literals.GROUP);
-        newGroup.eSet(TournamentPackage.Literals.NAMED_ELEMENT__NAME, "Group A");
+        newGroup.eSet(TournamentPackage.Literals.NAMED_ELEMENT__NAME, "Group B");
         groups.add((Group) newGroup);
-        System.out.println(groups.get(1).eGet(TournamentPackage.Literals.NAMED_ELEMENT__NAME));
+        System.out.println(groups.get(2).eGet(TournamentPackage.Literals.NAMED_ELEMENT__NAME));
+        
+        /**
+         * Showcase validation.
+         */
+        validate(tournament);
+        
+        /**
+         * The above code will produce an error for the "groupMatchRequiresGroupKind" constraint, because OCL is not initialized.
+         * This needs to be done before running the validation and requires the plugin org.eclipse.ocl.xtext.oclinecore 
+         * (which implicitly requires log4j (org.apache.log4j)).
+         */
+        PivotStandaloneSetup.doSetup();
+        EssentialOCLStandaloneSetup.doSetup();
+        
+        /**
+         * Remove the newly created temporary group to avoid a validation error.
+         */
+        groups.remove(newGroup);
+        
+        validate(tournament);
+    }
+    
+    private static void validate(EObject eObject) {
+        System.out.format("Validating %s...\n", eObject);
+        Diagnostic diagnostic = Diagnostician.INSTANCE.validate(eObject);
+        
+        if (diagnostic.getSeverity() == Diagnostic.OK) {
+            System.out.println("No validation problems found.");
+        } else {
+            System.out.format("Validation Error for: %s\n", diagnostic.getData().get(0));
+            for (Diagnostic child : diagnostic.getChildren()) {
+                System.out.format("    %s\n", child.getData());
+            }
+        }
     }
 
 }
