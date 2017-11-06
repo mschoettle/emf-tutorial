@@ -11,12 +11,14 @@ import com.mattsch.emf.examples.tournament.Tournament;
 import com.mattsch.emf.examples.tournament.TournamentFactory;
 import com.mattsch.emf.examples.tournament.TournamentPackage;
 
+import com.mattsch.emf.examples.tournament.util.TournamentValidator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -119,6 +121,15 @@ public class TournamentPackageImpl extends EPackageImpl implements TournamentPac
 
         // Initialize created meta-data
         theTournamentPackage.initializePackageContents();
+
+        // Register package validator
+        EValidator.Registry.INSTANCE.put
+            (theTournamentPackage, 
+             new EValidator.Descriptor() {
+                 public EValidator getEValidator() {
+                     return TournamentValidator.INSTANCE;
+                 }
+             });
 
         // Mark meta-data to indicate it can't be changed
         theTournamentPackage.freeze();
@@ -421,6 +432,70 @@ public class TournamentPackageImpl extends EPackageImpl implements TournamentPac
 
         // Create resource
         createResource(eNS_URI);
+
+        // Create annotations
+        // http://www.eclipse.org/OCL/Import
+        createImportAnnotations();
+        // http://www.eclipse.org/emf/2002/Ecore
+        createEcoreAnnotations();
+        // http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot
+        createPivotAnnotations();
+    }
+
+    /**
+     * Initializes the annotations for <b>http://www.eclipse.org/OCL/Import</b>.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void createImportAnnotations() {
+        String source = "http://www.eclipse.org/OCL/Import";	
+        addAnnotation
+          (this, 
+           source, 
+           new String[] {
+             "ecore", "http://www.eclipse.org/emf/2002/Ecore"
+           });
+    }
+
+    /**
+     * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void createEcoreAnnotations() {
+        String source = "http://www.eclipse.org/emf/2002/Ecore";	
+        addAnnotation
+          (this, 
+           source, 
+           new String[] {
+             "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+             "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+             "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
+           });	
+        addAnnotation
+          (matchEClass, 
+           source, 
+           new String[] {
+             "constraints", "groupMatchRequiresGroupKind"
+           });
+    }
+
+    /**
+     * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot</b>.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void createPivotAnnotations() {
+        String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";	
+        addAnnotation
+          (matchEClass, 
+           source, 
+           new String[] {
+             "groupMatchRequiresGroupKind", "Tuple {\n\tmessage : String = \'A group match requires the match kind to be set to group.\',\n\tstatus : Boolean = if (not group.oclIsUndefined()) then kind = MatchKind::Group else true endif\n}.status"
+           });
     }
 
 } //TournamentPackageImpl

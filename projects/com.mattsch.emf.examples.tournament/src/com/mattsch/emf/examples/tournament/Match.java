@@ -25,7 +25,8 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see com.mattsch.emf.examples.tournament.TournamentPackage#getMatch()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='groupMatchRequiresGroupKind'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot groupMatchRequiresGroupKind='Tuple {\n\tmessage : String = \'A group match requires the match kind to be set to group.\',\n\tstatus : Boolean = if (not group.oclIsUndefined()) then kind = MatchKind::Group else true endif\n}.status'"
  * @generated
  */
 public interface Match extends EObject {
